@@ -3,8 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-#include "../textures/load_textures.h"
+#include "../textures/load_textures.h" 
 #include "../entities/pieces/piece.h"
+#include "../config/config.h"
 
 namespace Chess::Draw{
   class PieceRenderer{
@@ -14,6 +15,9 @@ namespace Chess::Draw{
 
     public:
     PieceRenderer();
-    void draw(sf::RenderWindow &renderWindow, Piece *&piece, float squareSize, sf::Vector2f boardPos);
+    void draw(
+      sf::RenderWindow &renderWindow, Piece *&piece, float squareSize, 
+      sf::Vector2f boardPos, bool fliped = false
+    );
   };
 }

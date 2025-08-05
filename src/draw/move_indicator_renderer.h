@@ -13,12 +13,12 @@ namespace Chess::Draw{
     };
 
     Mark markStyle;
-    std::vector<Mark> marks;
+    std::vector<Mark> marks; 
 
     public:
     MoveIndicatorRenderer() = default;
     void setMoves(std::vector<sf::Vector2i> moves);
-    void draw(sf::RenderWindow &renderWindow, float squareSize, sf::Vector2f boardPos);
+    void draw(sf::RenderWindow &renderWindow, float squareSize, sf::Vector2f boardPos, bool fliped = false);
     void clear();
   };
 }

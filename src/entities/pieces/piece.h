@@ -29,6 +29,7 @@ namespace Chess{
     bool wasMoved() { return alreadyMoved; }
     virtual std::vector<Vec2> getMoves(const BoardMatrix &boardMatrix) = 0;
     // virtual bool isPinned(const BoardMatrix &boardMatrix);
+    void invertOrientation() { goFoward *= -1; };
   };
 
   class Pawn : public Chess::Piece{

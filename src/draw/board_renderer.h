@@ -17,7 +17,7 @@ namespace Chess::Draw{
     BoardRenderer();
     float getSquareSize() { return squareSize; }
     sf::Vector2f getBoardPos () { return boardPos; }
-    void draw(sf::RenderWindow &renderWindow, sf::Vector2f upLeft = {0.f, 0.f});
+    void draw(sf::RenderWindow &renderWindow, sf::Vector2f upLeft = {0.f, 0.f}, bool fliped = false);
     void select(sf::Vector2i coords);
     void deSelect(sf::Vector2i coords);
   };

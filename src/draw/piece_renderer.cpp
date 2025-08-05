@@ -14,7 +14,10 @@ Chess::Draw::PieceRenderer::PieceRenderer(){
   };
 }
 
-void Chess::Draw::PieceRenderer::draw(sf::RenderWindow &renderWindow, Piece *&piece, float squareSize, sf::Vector2f boardPos){
+void Chess::Draw::PieceRenderer::draw(
+  sf::RenderWindow &renderWindow, Piece *&piece, float squareSize, 
+  sf::Vector2f boardPos, bool fliped
+){
   unsigned int index = 0;
 
   switch(piece->getType()){
@@ -36,10 +39,15 @@ void Chess::Draw::PieceRenderer::draw(sf::RenderWindow &renderWindow, Piece *&pi
     pieceSprite.getLocalBounds().size.x / 2.f,
     pieceSprite.getLocalBounds().size.y / 2.f
   });
+
+  Vec2 piecePos = piece->getPosition();
+  
+  if(fliped)
+    piecePos = {7 - piecePos.row, piecePos.col};
   
   pieceSprite.setPosition({
-    boardPos.x + piece->getPosition().col * squareSize + squareSize / 2.f,
-    boardPos.y + piece->getPosition().row * squareSize + squareSize / 2.f
+    boardPos.x + piecePos.col * squareSize + squareSize / 2.f,
+    boardPos.y + piecePos.row * squareSize + squareSize / 2.f
   });
 
   renderWindow.draw(pieceSprite);

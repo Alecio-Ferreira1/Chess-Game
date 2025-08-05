@@ -7,7 +7,9 @@ void Chess::Draw::MoveIndicatorRenderer::setMoves(std::vector<sf::Vector2i> move
   } 
 }
 
-void Chess::Draw::MoveIndicatorRenderer::draw(sf::RenderWindow &renderWindow, float squareSize, sf::Vector2f boardPos){
+void Chess::Draw::MoveIndicatorRenderer::draw(
+  sf::RenderWindow &renderWindow, float squareSize, sf::Vector2f boardPos, bool fliped
+){
   for(Mark &mark : marks){
     mark.shape.setRadius(0.15 * squareSize);
     
@@ -16,9 +18,14 @@ void Chess::Draw::MoveIndicatorRenderer::draw(sf::RenderWindow &renderWindow, fl
       mark.shape.getLocalBounds().size.y / 2.f
     });
 
-    mark.shape.setPosition({
-      boardPos.x + mark.pos.x * squareSize + squareSize / 2.f,
-      boardPos.y + mark.pos.y * squareSize + squareSize / 2.f
+    sf::Vector2i markPos = mark.pos;
+
+    if(fliped)
+      markPos = {markPos.x, 7 - markPos.y};
+
+    mark.shape.setPosition({ 
+      boardPos.x + markPos.x * squareSize + squareSize / 2.f,
+      boardPos.y + markPos.y * squareSize + squareSize / 2.f
     });
 
     renderWindow.draw(mark.shape);

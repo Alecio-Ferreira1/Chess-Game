@@ -3,14 +3,14 @@
 #include "../game/game.h"
 #include "../draw/draw.h"
 #include "selection_state.h"
-
+#include "../config/config.h"
 
 namespace Chess::Core{
   class BoardInteractionController{
     private:
-    Game &game;
-    SelectionState &selectionState; 
-    Draw::BoardRenderer &boardRenderer;
+    Game &game;   
+    SelectionState &selectionState;   
+    Draw::BoardRenderer &boardRenderer;  
     Draw::MoveIndicatorRenderer &moveIndicatorRenderer;
 
     bool isEnemyPiece(Piece *piece) const;

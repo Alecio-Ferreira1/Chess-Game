@@ -89,22 +89,39 @@ void Chess::Core::GameApp::render(){
     {static_cast<float>(w), 
      static_cast<float>(h)}
   });
+
+  bool flipSides = false;
+
+  if(Config::enableAutoFlip && game.getPlayerTurn() == 2)
+    flipSides = true;
   
   window.clear(sf::Color::White);
-  boardRenderer.draw(window, center);
-  renderPieces();
-  moveIndicatorRenderer.draw(window, boardRenderer.getSquareSize(), boardRenderer.getBoardPos());
+  
+  boardRenderer.draw(window, center, flipSides);
+  renderPieces(flipSides);
+  
+  moveIndicatorRenderer.draw(
+    window, boardRenderer.getSquareSize(), 
+    boardRenderer.getBoardPos(), flipSides
+  );
+  
   window.setView(view);
   window.display();
 }
 
-void Chess::Core::GameApp::renderPieces(){
+void Chess::Core::GameApp::renderPieces(bool fliped){
   BoardMatrix boardMatrix = game.getBoard().getInfo();
 
   for(int i = 0; i < 8; ++i){
     for(int j = 0; j < 8; ++j){
       if(boardMatrix[i][j] != nullptr){
-        pieceRenderer.draw(window, boardMatrix[i][j], boardRenderer.getSquareSize(), boardRenderer.getBoardPos());
+        pieceRenderer.draw(
+          window, 
+          boardMatrix[i][j], 
+          boardRenderer.getSquareSize(), 
+          boardRenderer.getBoardPos(),
+          fliped
+        );
       }
     }
   }

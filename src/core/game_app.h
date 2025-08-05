@@ -14,13 +14,13 @@ namespace Chess::Core{
     Draw::BoardRenderer boardRenderer;
     Draw::PieceRenderer pieceRenderer;
     Draw::MoveIndicatorRenderer moveIndicatorRenderer;
-    Core::SelectionState selectionState;
-    Core::BoardInteractionController interactionController;
+    SelectionState selectionState;
+    BoardInteractionController interactionController;
 
     void handleEvents();
     void getInput(std::optional<sf::Event>& event);
     void render();
-    void renderPieces();
+    void renderPieces(bool fliped = false);
     bool boardClicked(sf::Vector2f mousePos);
 
     public:

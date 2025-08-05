@@ -1,4 +1,3 @@
-#include <ctype.h>
 #include "board.h"
 
 void Chess::Board::dealWithEnPassant(Pawn *&pawn, Vec2 to){

@@ -19,7 +19,12 @@ Chess::Draw::BoardRenderer::BoardRenderer(){
   }
 }
 
-void Chess::Draw::BoardRenderer::draw(sf::RenderWindow &renderWindow, sf::Vector2f upLeft){
+void Chess::Draw::BoardRenderer::draw(sf::RenderWindow &renderWindow, sf::Vector2f upLeft, bool fliped){
+  for(int i = 0; i < 8; ++i){
+    rows[i].setString(fliped ? std::string(1, '1' + i) : std::string(1, '8' - i));
+    columns[i].setString(fliped ? std::string(1, 'h' - i) : std::string(1, 'a' + i));
+  }
+
   const sf::Vector2u winSize = renderWindow.getSize();
   squareSize = std::min(winSize.x, winSize.y) / 8.f;
   fontSize = 0.2 * squareSize;
